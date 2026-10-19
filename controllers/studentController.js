@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import studentModel from "../models/studentModel.js";
 import courseIDConverter from "../utils/NameToID.js";
+import courseModel from "../models/courseModel.js";
 
 export const createStudent = async (req, res) => {
   try {
@@ -14,7 +15,7 @@ export const createStudent = async (req, res) => {
       courses: coursesName,
     } = req.body;
 
-    const courses = courseIDConverter(coursesName);
+    const courses = await courseIDConverter(coursesName, courseModel, "course");
 
     const student = await studentModel.create({
       fullName,
@@ -94,7 +95,7 @@ export const updateStudent = async (req, res) => {
     );
 
     me?.password = password;
-    me.save();
+    me?.save();
 
     if (!me) {
       res.status(404).json({

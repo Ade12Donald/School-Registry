@@ -13,7 +13,7 @@ const courseZOD = z.object({
     .string()
     .trim()
     .toUpperCase()
-    .length(6, min(2, "Courses must be 6 characters")),
+    .length(6, 2, "Courses must be 6 characters"),
   units: z.number().int().min(2, "Courses should be a minimum of 2"),
 });
 

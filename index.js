@@ -26,8 +26,8 @@ mongoose
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/studentPortal/student", studentRouter);
-app.use("/StaffPortal/courses", courseRouter);
+app.use("/portal/student", studentRouter);
+app.use("/portal/courses", courseRouter);
 
 app.use((req, res) => {
   res.status(404).json({ ERROR: "PAGE NOT FOUND" });

@@ -67,7 +67,7 @@ const studentSchema = new mongoose.Schema(
       required: [true, "{PATH} is required"],
     },
     courses: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "course",
     },
   },

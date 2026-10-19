@@ -5,6 +5,7 @@ const errorHandling = (error, res) => {
       .json({ ERROR: error.message, details: error.notFound });
   }
   res.status(500).json({ ERROR: error.message });
+  console.error(error);
 };
 
 export default errorHandling;

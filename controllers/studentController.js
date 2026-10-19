@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import studentModel from "../models/studentModel.js";
 import courseIDConverter from "../utils/NameToID.js";
 import courseModel from "../models/courseModel.js";
+import errorHandling from "../utils/errorHandling.js";
 
 export const createStudent = async (req, res) => {
   try {
@@ -32,12 +33,7 @@ export const createStudent = async (req, res) => {
       greeting: `Welcome, ${student.fullName.split(" ")[1]}`,
     });
   } catch (error) {
-    if (error.notFound) {
-      return res
-        .status(404)
-        .json({ ERROR: error.message, details: error.notFound });
-    }
-    res.status(500).json({ ERROR: error.message });
+    errorHandling(error, res);
   }
 };
 
@@ -108,12 +104,7 @@ export const updateStudent = async (req, res) => {
       data: me,
     });
   } catch (error) {
-    if (error.notFound) {
-      return res
-        .status(404)
-        .json({ ERROR: error.message, details: error.notFound });
-    }
-    res.status(500).json({ ERROR: error.message });
+    errorHandling(error, res);
   }
 };
 

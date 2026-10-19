@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const studentSchema = new mongoose.Schema({
-  lecturer: {
+const lecturerSchema = new mongoose.Schema({
+  fullName: {
     type: String,
     trim: true,
     minlength: [5, "{PATH} should have a minimum of 5 characters"],
@@ -29,9 +29,9 @@ const studentSchema = new mongoose.Schema({
   },
 });
 
-studentSchema.pre("save", async () => {
+lecturerSchema.pre("save", async () => {
   if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-export default mongoose.model("lecturer", studentSchema);
+export default mongoose.model("lecturer", lecturerSchema);

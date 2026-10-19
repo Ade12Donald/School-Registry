@@ -10,7 +10,7 @@ const lecturerZOD = z.object({
     .string()
     .trim()
     .toLowerCase()
-    .min(2, "Courses should have a minimum of 2 characters")
+    .min(2, "Email should have a minimum of 2 characters")
     .email(),
   password: z
     .string()
@@ -26,7 +26,7 @@ const lecturerZOD = z.object({
     .string()
     .trim()
     .toLowerCase()
-    .min(2, "Courses should have a minimum of 2 characters"),
+    .min(2, "Department name should have a minimum of 2 characters"),
 });
 
 export default lecturerZOD;

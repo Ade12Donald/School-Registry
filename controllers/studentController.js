@@ -83,7 +83,7 @@ export const updateStudent = async (req, res) => {
       return res.status(400).json({ Error: "Input a valid user Id" });
     }
 
-    const courses = courseIDConverter(coursesName);
+    const courses = await courseIDConverter(coursesName, courseModel, "course");
 
     const me = await studentModel.findByIdAndUpdate(
       myId,

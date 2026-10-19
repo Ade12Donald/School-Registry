@@ -76,4 +76,4 @@ studentSchema.pre("save", async () => {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-export default mongoose.model("course", studentSchema);
+export default mongoose.model("student", studentSchema);

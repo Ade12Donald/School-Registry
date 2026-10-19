@@ -74,14 +74,14 @@ npm start
 
 ## API Endpoints
 
-| Role           | Method |             Route             | Description                               |
-| -------------- | ------ | :---------------------------: | ----------------------------------------- |
-| Student        | POST   | /studentPortal/student/signUp | Create student Account                    |
-| Student        | GET    | /studentPortal/student/me/:id | Get Student Personal Data                 |
-| Student        | PATCH  | /studentPortal/student/me/:id | Update Student Personal Data              |
-| Student        | DELETE | /studentPortal/student/me/:id | Delete Student Personal Data              |
-|                |        |                               |                                           |
-| Lecturer/admin | POST   |  /StaffPortal/courses/create  | Create Course (done by lecturer or admin) |
+| Role           | Method |         Route          | Description                               |
+| -------------- | ------ | :--------------------: | ----------------------------------------- |
+| Student        | POST   | /portal/student/signUp | Create student Account                    |
+| Student        | GET    | /portal/student/me/:id | Get Student Personal Data                 |
+| Student        | PATCH  | /portal/student/me/:id | Update Student Personal Data              |
+| Student        | DELETE | /portal/student/me/:id | Delete Student Personal Data              |
+|                |        |                        |                                           |
+| Lecturer/admin | POST   | /portal/courses/create | Create Course (done by lecturer or admin) |
 
 ## Project Structure
 

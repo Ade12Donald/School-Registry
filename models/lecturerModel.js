@@ -19,7 +19,7 @@ const lecturerSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, "{PATH} is required"],
-    minlength: [6, "{PATH} should have a minimum of 6characters"],
+    minlength: [6, "{PATH} should have a minimum of 6 characters"],
   },
   department: {
     type: String,

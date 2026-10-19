@@ -6,7 +6,12 @@ const lecturerZOD = z.object({
     .trim()
     .min(5, "Name should have a minimum of 5 characters")
     .max(30, "Name should have a maximum of 25 characters"),
-  email: z.string().trim().min(2).toLowerCase().email(),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .min(2, "Courses should have a minimum of 2 characters")
+    .email(),
   password: z
     .string()
     .min(6, "Password should have a minimum of 6 characters")
@@ -17,7 +22,11 @@ const lecturerZOD = z.object({
       /[@#*&$<>_-]/,
       "It should contain at least a special symbol => (@,#,*,&,$,<,>,_ or -)",
     ),
-  department: z.string().trim().min(2).toLowerCase(),
+  department: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .min(2, "Courses should have a minimum of 2 characters"),
 });
 
 export default lecturerZOD;

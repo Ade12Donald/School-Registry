@@ -6,7 +6,12 @@ const studentZOD = z.object({
     .trim()
     .min(5, "Name should have a minimum of 5 characters")
     .max(25, "Name should have a maximum of 25 characters"),
-  email: z.string().trim().min(2).toLowerCase().email(),
+  email: z
+    .string()
+    .trim()
+    .min(2, "Email should have a maximum of 2 characters")
+    .toLowerCase()
+    .email(),
   password: z
     .string()
     .min(6, "Password should have a minimum of 6 characters")
@@ -20,13 +25,13 @@ const studentZOD = z.object({
   year: z.coerce
     .number()
     .int()
-    .min(100)
-    .max(600)
+    .min(100, "Year should have a minimum of 100 characters")
+    .max(600, "Year should have a maximum of 600 characters")
     .multipleOf(100, "Level must be 100, 200, ..... 600"),
   faculty: z
     .string()
     .trim()
-    .min(2)
+    .min(2, "Faculty should have a minimum of 2 characters")
     .toLowerCase()
     .pipe(
       z.enum(
@@ -57,8 +62,18 @@ const studentZOD = z.object({
         },
       ),
     ),
-  department: z.string().trim().min(2).toLowerCase(),
-  courses: z.string().trim().min(2).toLowerCase(),
+  department: z
+    .string()
+    .trim()
+    .min(2, "Department should have a minimum of 2 characters")
+    .toLowerCase(),
+  courses: z.array(
+    z
+      .string()
+      .trim()
+      .min(2, "Courses should have a minimum of 2 characters")
+      .toLowerCase(),
+  ),
 });
 
 export default studentZOD;

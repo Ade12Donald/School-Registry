@@ -2,7 +2,7 @@ import courseModel from "../models/courseModel.js";
 
 export const createCourse = async (req, res) => {
   try {
-    const { course, lecturer } = req.body;
+    const { course, lecturer: lecturerName, code, units } = req.body;
 
     const createdCourse = await studentModel.create({ course, lecturer });
 

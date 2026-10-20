@@ -132,3 +132,22 @@ export const deleteStudent = async (req, res) => {
     res.status(500).json({ ERROR: error.message });
   }
 };
+export const getAllCourse = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const allCourse = await studentModel
+      .find({ _id: id })
+      .select("courses")
+      .populate({
+        path: "courses",
+        populate: { path: "lecturer", select: "-password" },
+      });
+
+    res.status(200).json({
+      message: "Course fetched successfully",
+      courseData: allCourse,
+    });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};

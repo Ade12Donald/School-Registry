@@ -12,11 +12,17 @@ export const createCourse = async (req, res) => {
       "fullName",
     );
 
+    const createdCourse = await courseModel.create({
+      course,
+      code,
+      lecturer,
+      units,
+    });
+
     res.status(201).json({
       message: "Course created successfully",
       courseData: createdCourse,
     });
   } catch (error) {
-    res.status(500).json({ ERROR: error.message });
   }
 };

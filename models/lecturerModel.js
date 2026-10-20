@@ -32,7 +32,7 @@ const lecturerSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false },
 );
 
-lecturerSchema.pre("save", async () => {
+lecturerSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 10);
 });

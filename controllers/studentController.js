@@ -4,6 +4,7 @@ import courseIDConverter from "../utils/NameToID.js";
 import courseModel from "../models/courseModel.js";
 import errorHandling from "../utils/errorHandling.js";
 
+// Student Account
 export const createStudent = async (req, res) => {
   try {
     const {
@@ -132,6 +133,8 @@ export const deleteStudent = async (req, res) => {
     res.status(500).json({ ERROR: error.message });
   }
 };
+
+// Student-Course Relationship
 export const getAllCourse = async (req, res) => {
   try {
     const { id } = req.user;

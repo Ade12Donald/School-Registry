@@ -96,6 +96,9 @@ export const updateStudent = async (req, res) => {
       });
     }
 
+    me.password = password;
+    await me.save();
+
     res.status(200).json({
       message: "Student updated successfully",
       data: me,

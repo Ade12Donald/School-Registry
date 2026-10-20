@@ -1,5 +1,6 @@
 import lecturerModel from "../models/lecturerModel.js";
 import courseModel from "../models/courseModel.js";
+import errorHandling from "../utils/errorHandling.js";
 import lecturerNameConverter from "../utils/NameToID.js";
 
 export const createCourse = async (req, res) => {
@@ -24,5 +25,8 @@ export const createCourse = async (req, res) => {
       courseData: createdCourse,
     });
   } catch (error) {
+    errorHandling(error, res);
+  }
+};
   }
 };

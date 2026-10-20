@@ -7,7 +7,7 @@ const lecturerSchema = new mongoose.Schema(
       type: String,
       trim: true,
       minlength: [5, "{PATH} should have a minimum of 5 characters"],
-      maxlength: [25, "{PATH} should have a maximum of 25 characters"],
+      maxlength: [30, "{PATH} should have a maximum of 25 characters"],
       required: [true, "{PATH} is required"],
     },
     email: {

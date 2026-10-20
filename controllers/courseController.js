@@ -28,5 +28,28 @@ export const createCourse = async (req, res) => {
     errorHandling(error, res);
   }
 };
+
+export const getCourse = async (req, res) => {
+  try {
+    const { id: courseId } = req.params;
+
+    if (!mongoose.isValidObjectId(courseId)) {
+      return res.status(400).json({ Error: "Input a valid Course Id" });
+    }
+
+    const course = await courseModel.findById(courseId);
+
+    if (!course) {
+      res.status(404).json({
+        ERROR: "Course NOT FOUND",
+      });
+    }
+
+    res.status(200).json({
+      message: "Course fetched successfully",
+      courseData: course,
+    });
+  } catch (error) {
+    errorHandling(error, res);
   }
 };

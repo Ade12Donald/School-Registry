@@ -45,7 +45,7 @@ export const getStudent = async (req, res) => {
       return res.status(400).json({ Error: "Input a valid user Id" });
     }
 
-    const me = await studentModel.findById(myId);
+    const me = await studentModel.findById(myId).select("-password");
     if (!me) {
       res.status(404).json({
         ERROR: "User NOT FOUND",

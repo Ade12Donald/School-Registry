@@ -4,6 +4,7 @@ import {
   getStudent,
   updateStudent,
   deleteStudent,
+  getAllCourse,
 } from "../controllers/studentController.js";
 import { validate } from "../middleware/validateMiddleware.js";
 import studentZOD from "../schema/studentSchema.js";
@@ -14,5 +15,7 @@ router.post("/signUp", validate(studentZOD), createStudent);
 router.get("/me/:id", getStudent);
 router.patch("/me/:id", validate(studentZOD.partial()), updateStudent);
 router.delete("/me/:id", deleteStudent);
+
+router.get("/me/course", getAllCourse);
 
 export default router;

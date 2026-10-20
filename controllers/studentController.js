@@ -47,7 +47,7 @@ export const getStudent = async (req, res) => {
 
     const me = await studentModel.findById(myId).select("-password");
     if (!me) {
-      res.status(404).json({
+      return res.status(404).json({
         ERROR: "User NOT FOUND",
       });
     }
@@ -90,11 +90,8 @@ export const updateStudent = async (req, res) => {
       },
     );
 
-    me?.password = password;
-    me?.save();
-
     if (!me) {
-      res.status(404).json({
+      return res.status(404).json({
         ERROR: "User NOT FOUND",
       });
     }
@@ -118,7 +115,7 @@ export const deleteStudent = async (req, res) => {
 
     const me = await studentModel.findByIdAndDelete(myId);
     if (!me) {
-      res.status(404).json({
+      return res.status(404).json({
         ERROR: "User NOT FOUND",
       });
     }

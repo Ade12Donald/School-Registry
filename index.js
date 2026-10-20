@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import studentRouter from "./routers/studentRouter.js";
 import courseRouter from "./routers/courseRouter.js";
+import lecturerRouter from "./routers/lecturerRoute.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(morgan("dev"));
 
 app.use("/portal/student", studentRouter);
 app.use("/portal/courses", courseRouter);
+app.use("/portal/lecturer", lecturerRouter);
 
 app.use((req, res) => {
   res.status(404).json({ ERROR: "PAGE NOT FOUND" });

@@ -14,12 +14,13 @@ const router = express.Router();
 
 // Student Account
 router.post("/signUp", validate(studentZOD), createStudent);
-router.get("/me/:id", getStudent);
-router.patch("/me/:id", validate(studentZOD.partial()), updateStudent);
-router.delete("/me/:id", deleteStudent);
 
 router.use(verifyToken("studentToken"));
 // Student-Course Relationship
 router.get("/me/course", getAllCourse);
+// Student Account edit
+router.get("/me/:id", getStudent);
+router.patch("/me/:id", validate(studentZOD.partial()), updateStudent);
+router.delete("/me/:id", deleteStudent);
 
 export default router;

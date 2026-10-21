@@ -18,12 +18,8 @@ router.get("login", validate(loginZOD), loginLecturer);
 
 router.use(verifyToken("lecturerToken"));
 
-router.get("/getLecturer", getLecturer);
-router.patch(
-  "/updateLecturer",
-  validate(lecturerZOD.partial()),
-  updateLecturer,
-);
-router.delete("/deleteLecturer", deleteLecturer);
+router.get("/get_me", getLecturer);
+router.patch("/update_me", validate(lecturerZOD.partial()), updateLecturer);
+router.delete("/delete_me", deleteLecturer);
 
 export default router;

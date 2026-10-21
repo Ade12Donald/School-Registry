@@ -143,7 +143,7 @@ export const loginStudent = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const me = await studentModel.findOne({ email }).select("email password");
+    const me = await studentModel.findOne({ email });
 
     if (!me) {
       return res.status(404).json("Invalid email or password");
@@ -151,6 +151,12 @@ export const loginStudent = async (req, res) => {
     if (!(await bcrypt.compare(password, me.password))) {
       return res.status(404).json("Invalid email or password");
     }
+
+    res.status(200).json({
+      message: "Student logged in successfully",
+      greeting: `Welcome, ${me.fullName.split(" ")[1]}`,
+      data: me,
+    });
   } catch (error) {
     errorHandling(error, res);
   }

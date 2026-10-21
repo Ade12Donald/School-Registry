@@ -24,3 +24,29 @@ export const createLecturer = async (req, res) => {
     errorHandling(error, res);
   }
 };
+
+export const getLecturer = async (req, res) => {
+  try {
+    const { id: myId } = req.params;
+
+    if (!mongoose.isValidObjectId(myId)) {
+      return res.status(400).json({ Error: "Input a valid user Id" });
+    }
+
+    const me = await lecturerModel.findById(myId).select("-password");
+    if (!me) {
+      return res.status(404).json({
+        ERROR: "User NOT FOUND",
+      });
+    }
+
+    res.status(200).json({
+      message: "Lecturer fetched successfully",
+      greeting: `Welcome, ${me.fullName.split(" ")[2]}`,
+      data: me,
+    });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};
+

@@ -3,6 +3,11 @@ import bcrypt from "bcrypt";
 
 const studentSchema = new mongoose.Schema(
   {
+    tag: {
+      type: String,
+      default: "student",
+      immutable: true,
+    },
     fullName: {
       type: String,
       trim: true,

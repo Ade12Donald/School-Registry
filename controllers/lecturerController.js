@@ -50,6 +50,42 @@ export const getLecturer = async (req, res) => {
   }
 };
 
+export const updateLecturer = async (req, res) => {
+  try {
+    const { id: myId } = req.user;
+    const { fullName, email, password, department } = req.body;
+
+    if (!mongoose.isValidObjectId(myId)) {
+      return res.status(400).json({ Error: "Input a valid user Id" });
+    }
+
+    const me = await lecturerModel.findByIdAndUpdate(
+      myId,
+      { fullName, email, department },
+      {
+        returnDocument: "after",
+        runValidators: true,
+      },
+    );
+
+    if (!me) {
+      return res.status(404).json({
+        ERROR: "User NOT FOUND",
+      });
+    }
+
+    me.password = password;
+    await me.save();
+
+    res.status(200).json({
+      message: "Lecturer updated successfully",
+      data: me,
+    });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};
+
 export const loginLecturer = async (req, res) => {
   try {
     const { email, password } = req.body;

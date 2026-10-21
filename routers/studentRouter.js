@@ -8,6 +8,7 @@ import {
   getAllCourse,
 } from "../controllers/studentController.js";
 import { validate } from "../middleware/validateMiddleware.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.get("/me/:id", getStudent);
 router.patch("/me/:id", validate(studentZOD.partial()), updateStudent);
 router.delete("/me/:id", deleteStudent);
 
+router.use(verifyToken("studentToken"));
 // Student-Course Relationship
 router.get("/me/course", getAllCourse);
 

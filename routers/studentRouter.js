@@ -10,12 +10,13 @@ import {
 } from "../controllers/studentController.js";
 import { validate } from "../middleware/validateMiddleware.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
+import loginZOD from "../schema/loginSchema.js";
 
 const router = express.Router();
 
 // Student Account
 router.post("/signUp", validate(studentZOD), createStudent);
-router.get("login", validate(studentZOD.partial()), loginStudent);
+router.get("login", validate(loginZOD), loginStudent);
 
 router.use(verifyToken("studentToken"));
 // Student-Course Relationship

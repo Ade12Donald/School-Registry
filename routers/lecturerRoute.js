@@ -9,11 +9,12 @@ import {
 } from "../controllers/lecturerController.js";
 import { validate } from "../middleware/validateMiddleware.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
+import loginZOD from "../schema/loginSchema.js";
 
 const router = express.Router();
 
 router.post("/create", validate(lecturerZOD), createLecturer);
-router.get("login", loginLecturer);
+router.get("login", validate(loginZOD), loginLecturer);
 
 router.use(verifyToken("lecturerToken"));
 

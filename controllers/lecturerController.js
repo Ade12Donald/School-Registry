@@ -50,3 +50,24 @@ export const getLecturer = async (req, res) => {
   }
 };
 
+export const loginLecturer = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const me = await lecturerModel.findOne({ email });
+
+    if (!me) {
+      return res.status(404).json("Invalid email or password");
+    }
+    if (!(await bcrypt.compare(password, me.password))) {
+      return res.status(404).json("Invalid email or password");
+    }
+    res.status(200).json({
+      message: "Lecturer logged in successfully",
+      greeting: `Welcome, ${me.fullName.split(" ")[2]}`,
+      data: me,
+    });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 import studentModel from "../models/studentModel.js";
 import courseIDConverter from "../utils/NameToID.js";
 import courseModel from "../models/courseModel.js";
@@ -133,6 +134,23 @@ export const deleteStudent = async (req, res) => {
       greeting: `Bye, ${me.fullName.split(" ")[1]}`,
       data: me,
     });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};
+
+export const loginStudent = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const me = await studentModel.findOne({ email }).select("email password");
+
+    if (!me) {
+      return res.status(404).json("Invalid email or password");
+    }
+    if (!(await bcrypt.compare(password, me.password))) {
+      return res.status(404).json("Invalid email or password");
+    }
   } catch (error) {
     errorHandling(error, res);
   }

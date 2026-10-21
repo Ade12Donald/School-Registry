@@ -6,19 +6,19 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import cors from "cors";
 import { createServer } from "http";
-import { Server } from "socket.io";
 
 //import from Server folder
 import studentRouter from "./routers/studentRouter.js";
 import courseRouter from "./routers/courseRouter.js";
 import lecturerRouter from "./routers/lecturerRoute.js";
 import corsOption from "./utils/corsOptions.js";
+import { serverInit } from "./socket/server.js";
 
 //Configuration
 dotenv.config();
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = serverInit(httpServer);
 const corsConfig = corsOption(5173);
 
 //VARIABLES

@@ -86,6 +86,31 @@ export const updateLecturer = async (req, res) => {
   }
 };
 
+export const deleteLecturer = async (req, res) => {
+  try {
+    const { id: myId } = req.user;
+
+    if (!mongoose.isValidObjectId(myId)) {
+      return res.status(400).json({ Error: "Input a valid user Id" });
+    }
+
+    const me = await lecturerModel.findByIdAndDelete(myId);
+    if (!me) {
+      return res.status(404).json({
+        ERROR: "User NOT FOUND",
+      });
+    }
+
+    res.status(200).json({
+      message: "Lecturer updated successfully",
+      greeting: `Bye, ${me.fullName.split(" ")[1]}`,
+      data: me,
+    });
+  } catch (error) {
+    errorHandling(error, res);
+  }
+};
+
 export const loginLecturer = async (req, res) => {
   try {
     const { email, password } = req.body;

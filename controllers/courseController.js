@@ -6,6 +6,11 @@ import lecturerNameConverter from "../utils/NameToID.js";
 export const createCourse = async (req, res) => {
   try {
     const { course, lecturer: lecturerName, code, units } = req.body;
+    if (!(req.user.tag === "lecturer")) {
+      return res
+        .status(403)
+        .status({ ERROR: "You are not authorized to create a course" });
+    }
 
     const lecturer = await lecturerNameConverter(
       lecturerName,

@@ -22,8 +22,8 @@ router.use(verifyToken("studentToken"));
 // Student-Course Relationship
 router.get("/me/course", getAllCourse);
 // Student Account edit
-router.get("/me/:id", getStudent);
-router.patch("/me/:id", validate(studentZOD.partial()), updateStudent);
-router.delete("/me/:id", deleteStudent);
+router.get("/get_me", getStudent);
+router.patch("/update_me", validate(studentZOD.partial()), updateStudent);
+router.delete("/delete_me", deleteStudent);
 
 export default router;

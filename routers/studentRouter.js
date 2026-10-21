@@ -1,4 +1,5 @@
 import express from "express";
+import studentZOD from "../schema/studentSchema.js";
 import {
   createStudent,
   getStudent,
@@ -7,7 +8,6 @@ import {
   getAllCourse,
 } from "../controllers/studentController.js";
 import { validate } from "../middleware/validateMiddleware.js";
-import studentZOD from "../schema/studentSchema.js";
 
 const router = express.Router();
 

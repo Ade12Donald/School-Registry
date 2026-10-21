@@ -1,6 +1,6 @@
 import express from "express";
-import { createCourse } from "../controllers/courseController.js";
 import courseZOD from "../schema/courseSchema.js";
+import { createCourse } from "../controllers/courseController.js";
 import { validate } from "../middleware/validateMiddleware.js";
 
 const router = express.Router();

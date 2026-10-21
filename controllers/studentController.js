@@ -143,7 +143,7 @@ export const getAllCourse = async (req, res) => {
   try {
     const { id } = req.user;
     const allCourse = await studentModel
-      .find({ _id: id })
+      .findById(id)
       .select("courses")
       .populate({
         path: "courses",

@@ -9,7 +9,7 @@ const studentZOD = z.object({
   email: z
     .string()
     .trim()
-    .min(2, "Email should have a maximum of 2 characters")
+    .min(2, "Email should have a minimum of 2 characters")
     .toLowerCase()
     .email(),
   password: z

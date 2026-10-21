@@ -3,6 +3,7 @@ import studentModel from "../models/studentModel.js";
 import courseIDConverter from "../utils/NameToID.js";
 import courseModel from "../models/courseModel.js";
 import errorHandling from "../utils/errorHandling.js";
+import { signToken } from "../utils/token.js";
 
 // Student Account
 export const createStudent = async (req, res) => {
@@ -28,6 +29,9 @@ export const createStudent = async (req, res) => {
       year,
       courses,
     });
+
+    signToken(res, student.tag, student._id, "studentToken");
+
     res.status(201).json({
       message: "Student created successfully",
       data: student,

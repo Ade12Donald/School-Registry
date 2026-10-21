@@ -1,5 +1,6 @@
 import lecturerModel from "../models/lecturerModel.js";
 import errorHandling from "../utils/errorHandling.js";
+import { signToken } from "../utils/token.js";
 
 export const createLecturer = async (req, res) => {
   try {
@@ -11,6 +12,8 @@ export const createLecturer = async (req, res) => {
       password,
       department,
     });
+
+    signToken(res, lecturer.tag, lecturer._id, "lecturerToken");
 
     res.status(201).json({
       message: "Lecturer created successfully",

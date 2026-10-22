@@ -41,6 +41,7 @@ A simple and efficient way for student to keep track of their courses, their lec
 
 - zod
 - JWT & Cookies
+- crypto
 - OTP via email
 
 ## GETTING STARTED
